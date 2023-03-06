@@ -50,7 +50,6 @@ public class MyStack<E> implements MyStackInterface<E> {
     public E peek() {
         if(stack.length > 0){
             return stack[0];
-        } else {
         }
         return null;
     }

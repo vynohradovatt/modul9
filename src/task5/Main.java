@@ -9,11 +9,7 @@ public class Main {
         myHashMap.put(2, "two");
         myHashMap.put(3, "three");
         myHashMap.put(4, "four");
-        myHashMap.remove(4);
-        myHashMap.remove(2);
-        myHashMap.put(19, "nineteen");
-        myHashMap.clear();
-        myHashMap.put(67, "sixty seven");
+        myHashMap.put(1, "oneone");
         System.out.println(myHashMap.size());
     }
 

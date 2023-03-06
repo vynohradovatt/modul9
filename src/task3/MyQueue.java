@@ -39,7 +39,6 @@ public class MyQueue<E> implements MyQueueInterface<E> {
     public E peek() {
         if(array.length > 0){
             return array[0];
-        } else {
         }
         return null;
     }
