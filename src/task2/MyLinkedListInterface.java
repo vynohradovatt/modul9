@@ -2,9 +2,9 @@ package task2;
 
 public interface MyLinkedListInterface<E> {
 
-    public boolean add(E value);
-    public void remove(int index);
-    public void clear();
+    boolean add(E value);
+    void remove(int index);
+    void clear();
     int size();
-    public E get(int index);
+    E get(int index);
 }

@@ -1,6 +1,6 @@
 package task2;
 
-public class MyLinkedList<E> implements MyLinkedListInterface {
+public class MyLinkedList<E> implements MyLinkedListInterface<E> {
 
     private Node<E> firstElem;
     private Node<E> lastElem;
@@ -18,8 +18,7 @@ public class MyLinkedList<E> implements MyLinkedListInterface {
         }
     }
 
-    @Override
-    public boolean add(Object value) {
+    public boolean add(E value) {
         Node<E> node = new Node<E>((E)value);
         if (firstElem == null) {
             firstElem = node;
@@ -67,7 +66,7 @@ public class MyLinkedList<E> implements MyLinkedListInterface {
     }
 
     @Override
-    public Object get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }

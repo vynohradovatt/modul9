@@ -1,6 +1,6 @@
 package task4;
 
-public class MyStack<E> implements MyStackInterface {
+public class MyStack<E> implements MyStackInterface<E> {
 
     private E[] stack;
 
@@ -8,17 +8,17 @@ public class MyStack<E> implements MyStackInterface {
         stack = (E[])new Object[0];
     }
     @Override
-    public Object push(Object value) {
+    public E push(E value) {
         try {
             E[] temp = stack;
             stack = (E[]) new Object[stack.length + 1];
             System.arraycopy(temp, 0, stack, 0, temp.length);
             stack[stack.length - 1] = (E)value;
-            return true;
+            return (E)temp;
         } catch (ClassCastException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class MyStack<E> implements MyStackInterface {
     }
 
     @Override
-    public Object peek() {
+    public E peek() {
         if(stack.length > 0){
             return stack[0];
         } else {
@@ -56,15 +56,15 @@ public class MyStack<E> implements MyStackInterface {
     }
 
     @Override
-    public Object pop() {
+    public E pop() {
         try {
             E[] temp = stack;
             stack = (E[]) new Object[stack.length - 1];
             System.arraycopy(temp, 1, stack, 0, stack.length);
-            return true;
+            return (E)temp;
         } catch (ClassCastException exception) {
             exception.printStackTrace();
         }
-        return false;
+        return null;
     }
 }

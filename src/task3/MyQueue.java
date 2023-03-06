@@ -3,7 +3,7 @@ package task3;
 import java.util.Queue;
 import java.util.Stack;
 
-public class MyQueue<E> implements MyQueueInterface {
+public class MyQueue<E> implements MyQueueInterface<E> {
 
     private E[] array;
 
@@ -12,7 +12,7 @@ public class MyQueue<E> implements MyQueueInterface {
     }
 
     @Override
-    public boolean add(Object value) {
+    public boolean add(E value) {
         try {
             E[] temp = array;
             array = (E[]) new Object[array.length + 1];
@@ -36,7 +36,7 @@ public class MyQueue<E> implements MyQueueInterface {
     }
 
     @Override
-    public Object peek() {
+    public E peek() {
         if(array.length > 0){
             return array[0];
         } else {
@@ -45,15 +45,15 @@ public class MyQueue<E> implements MyQueueInterface {
     }
 
     @Override
-    public Object poll() {
+    public E poll() {
         try {
             E[] temp = array;
             array = (E[]) new Object[array.length - 1];
             System.arraycopy(temp, 1, array, 0, array.length);
-            return true;
+            return (E) temp;
         } catch (ClassCastException exception) {
             exception.printStackTrace();
         }
-        return false;
+        return null;
     }
 }

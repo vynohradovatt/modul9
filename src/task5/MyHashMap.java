@@ -2,17 +2,17 @@ package task5;
 
 public class MyHashMap<K,V> implements MyHashMapInterface<K,V> {
 
-    private Node<K,V>[] hashTable;
+    private Node<K,V> head;
     private int size = 0;
 
     public MyHashMap(){
-        hashTable = new Node[16];
+        head = null;
     }
 
     @Override
-    public void put(Object key, Object value) {
-        int index = getIndex(key);
-        Node node = hashTable[index];
+    public void put(K key, V value) {
+        int index = hash(key);
+        Node node = head;
         while (node != null) {
             if (node.key.equals(key)) {
                 node.value = value;
@@ -21,20 +21,20 @@ public class MyHashMap<K,V> implements MyHashMapInterface<K,V> {
             node = node.next;
         }
         Node newNode = new Node(key, value);
-        newNode.next = hashTable[index];
-        hashTable[index] = newNode;
+        newNode.next = head;
+        head = newNode;
         size++;
     }
 
     @Override
-    public V remove(Object key) {
-        int index = getIndex(key);
-        Node node = hashTable[index];
+    public V remove(K key) {
+        int index = hash(key);
+        Node node = head;
         Node prev = null;
         while (node != null) {
             if (node.key.equals(key)) {
                 if (prev == null) {
-                    hashTable[index] = node.next;
+                    head = node.next;
                 } else {
                     prev.next = node.next;
                 }
@@ -49,7 +49,8 @@ public class MyHashMap<K,V> implements MyHashMapInterface<K,V> {
 
     @Override
     public void clear() {
-        hashTable = new Node[0];
+        head = null;
+        size = 0;
     }
 
     @Override
@@ -58,9 +59,9 @@ public class MyHashMap<K,V> implements MyHashMapInterface<K,V> {
     }
 
     @Override
-    public V get(Object key) {
-        int index = getIndex(key);
-        Node node = hashTable[index];
+    public V get(K key) {
+        int index = hash(key);
+        Node node = head;
         while (node != null) {
             if (node.key.equals(key)) {
                 return (V) node.value;
@@ -69,9 +70,8 @@ public class MyHashMap<K,V> implements MyHashMapInterface<K,V> {
         }
         return null;
     }
-    private int getIndex(Object key) {
-        int hashCode = key.hashCode();
-        return Math.abs(hashCode) % hashTable.length;
+    private int hash(K key) {
+        return key.hashCode();
     }
 
     private class Node<K, V>{
