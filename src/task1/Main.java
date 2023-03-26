@@ -10,6 +10,7 @@ public class Main {
         str.add("tree");
         str.add("four");
         str.add("five");
+	str.add("sixth");
         str.remove(3);
 
         System.out.println(str.size());
